@@ -38,64 +38,40 @@ This was not a broken codebase. The Craft theme was clean. The problem was confi
 
 ## What we built
 
-### A research-grade redesign proposal, not a mood board
+### A proposal you can read in a browser, send to a partner, and approve in one sitting
 
-The first deliverable was a self-contained HTML proposal document the owner could open in any browser, send to a partner, and read end to end without a meeting. It is in this repo at [`docs/terra-moda-redesign-proposal.html`](./docs/terra-moda-redesign-proposal.html).
+Most agencies open with a slide deck and a mood board. We opened with a written, self-contained proposal the owner could read end to end on their own time — no kickoff meeting required, no waiting for the next session to see the recommendation. It's in this repo at [`docs/terra-moda-redesign-proposal.html`](./docs/terra-moda-redesign-proposal.html).
 
-The structure is deliberate:
+The proposal does six things, in order:
 
-1. **An honest audit** of the existing site, each finding paired with a one-line cost statement so it reads as a business problem, not a design opinion.
-2. **The evidence.** Six stat cards, each citing a research-grade source: Nielsen Norman Group on above-the-fold attention, Spiegel/Medill Research Center on reviews lifting purchase likelihood (+270% with even five reviews, rising to +380% on higher-priced items), peer-reviewed work on third-party certification and consumer trust, Baymard Institute on home-page breadth and mobile abandonment, Forrester/Criteo on research-online-purchase-offline behavior. Vendor data was marked separately and treated as directional only.
-3. **Competitive context.** A reading of nine independent and sustainable fashion stores (Taylor Stitch, Kotn, Buck Mason, Asket, Corridor NYC and others) that balance storytelling, conversion, and a physical store. The pattern the strongest ones share: the brand story sits *between* shopping paths, never as a wall in front of them.
-4. **Three proposed directions**, fully mocked in the document itself using only the client's existing vendor photography. Each direction is annotated A/B/C/D/E with the research that justifies that specific choice.
-5. **A clear recommendation** with the trade-offs of the other two written down, not buried.
+1. **An honest audit** of the existing site. Every finding paired with a one-line cost statement so it reads as a business problem, not a design opinion.
+2. **The evidence.** Six stat cards, each backed by independent UX and ecommerce research — the kind of citations a co-founder or investor can vet, not vibes-based design talk. Vendor data was kept separate and called out as directional, not authoritative.
+3. **Competitive context.** A reading of nine independent and sustainable fashion stores that balance storytelling, conversion, and a physical retail location. The pattern the strongest ones share: the brand story sits *between* shopping paths, never as a wall in front of them.
+4. **Three proposed directions**, fully mocked in the document itself using only the client's existing vendor photography. No requirement to provide new assets just to evaluate the work.
+5. **A clear recommendation**, with the trade-offs of the other two written down rather than buried.
 6. **A three-phase rollout** so the highest-impact, lowest-risk work lands first.
 
-The three directions optimize for different goals:
+The three directions optimized for different goals — brand-led (premium feel), conversion-led (catalog-forward, testimonials early), or balanced (story sandwiched between shopping paths, the Frederick store elevated to a first-class section). The owner approved the balanced direction on the first read. No second round. No deck. No "we'll think about it for a few weeks."
 
-- **Direction 1 · The Editorial Boutique.** Brand-led. For when the priority is making the site *feel* as premium as the clothing.
-- **Direction 2 · The Curated Shop.** Conversion-led. Catalog-forward, products within one scroll, testimonials before the fold.
-- **Direction 3 · The Local Atelier (recommended).** Balanced. Story sandwiched between shopping paths; the Frederick store elevated to a first-class section with an events hook.
+### An editorial storefront with the local store at the heart of it
 
-The owner approved Direction 3 on the first read. No further rounds.
+We rebuilt the homepage *on the existing theme*, not a new one. Theme replacements break product metafields, redirects, integrations, and years of customer-side detail that nobody notices until it's gone — and the existing theme was clean. The problem was never the code. It was that the home page was doing none of the work a home page should.
 
-### The Direction 3 rebuild, on the live Craft theme
+The new homepage tells the whole brand in one scroll:
 
-The implementation runs against the existing Craft theme, not a new theme from scratch. That choice was intentional. Replacing the theme would have meant losing every product metafield, redirect, app integration, and customer-side detail Shopify has accreted around the store. The proposal already established that the code was not the problem; configuration and section composition were. So we rebuilt the homepage and surrounding pages on Craft itself.
+- **A first impression that shows the brand.** An editorial hero with two clear paths — shop the collection or read the story — instead of a wall of text.
+- **Products visible above the fold.** A four-tile category grid, then a featured-product strip, so a first-time visitor can see what's for sale without clicking the nav.
+- **The story told the way people read it.** A scannable three-value strip — Fair Labor, Sustainable, Artisanal — with a single door into the full "Our Story" page, instead of a 400-word paragraph nobody finishes.
+- **The women's collection treated as a brand within the brand.** La Segreta gets its own editorial band with a dedicated shop CTA — the way the collection actually sits in the physical store.
+- **The Frederick store as a first-class destination.** A Visit-Us section with an embedded map, hours, and a "Get Directions" CTA. The retail location used to be a footer line. Now it's a section.
 
-What that meant concretely:
+Alongside the homepage, we filled the gaps that made the old site read as unfinished: spacing between sections, reveal-on-scroll animations, the dead 175 KB asset deleted from every page load, brand fields filled in, a utility bar with the trust signals and the local hook ("Free shipping & easy returns · Visit us in Historic Downtown Frederick"). Plus a self-sufficient mega-menu the owner can edit without needing a developer, a redesigned product detail page that puts the product first instead of upsell widgets, and a branded contact page that replaced an off-the-shelf form block.
 
-**The homepage was rebuilt from 2 sections to 6**, fully described in `templates/index.json`:
+**What we deliberately did not do:**
 
-1. `hero`: image banner with the editorial copy and dual CTAs ("Shop the Collection" + "Our Story"), text-box dropped, copy left-anchored over a gradient veil, cream primary button per Direction 3.
-2. `categories`: four-tile collection list (Men's, La Segreta, Outerwear, Accessories), portrait ratio, two-up on mobile.
-3. `new_arrivals`: featured-collection grid of 8 products from `all`, four columns desktop, two columns mobile with swipe.
-4. `why`: three-column value strip (Fair Labor / Sustainable / Artisanal) with a single "Read Our Full Story" door, per the NN/g finding that 79% of users scan rather than read.
-5. `lasegreta`: custom-liquid two-panel band giving the women's collection its own consistent visual treatment, with a "Shop La Segreta" CTA.
-6. `visit`: custom-liquid two-panel band with an embedded Google Maps iframe on the left and visit info plus a "Get Directions" CTA on the right, the Frederick store treated as a first-class section instead of a footer afterthought.
-
-**Quick wins that moved alongside the homepage:**
-
-- Section spacing turned on (`spacing_sections: 36`) and reveal-on-scroll animations enabled.
-- Empty footer brand fields filled in.
-- The dead 175 KB `sparkle.gif` deleted from `assets/`.
-- A utility bar added with the trust signal and the local hook ("Free shipping & easy returns · Visit us in Historic Downtown Frederick").
-- Footer brand pillar trust strip, "Get Directions" CTA, brand close line, bigger centered logo.
-
-**Custom theme code shipped alongside Craft:**
-
-- `tm-nav.css` for a theme-driven self-sufficient mega menu (category images and "More" link), locale-safe URLs, no admin dependency on every change.
-- A compact button-anchored dropdown (320px) that opens on hover, with overrides to fix Craft's base `.mega-menu__list display:grid` that was squeezing menu items into six columns.
-- Product card hover treatment with portrait ratio and a fixed cover-image box.
-- Product detail page reorder (Title → Vendor → Description), variant picker hidden when there is one variant, "Pay in installments" removed, price moved inline with Add to Cart, description moved below it, pickup status kept while hiding "Usually ready in 24 hrs" and "View store info".
-- Branded contact page with a styled form and a visit info block, the duplicate Formful app block removed.
-- Announcement bar links wired to Google Maps directions.
-
-**What we deliberately did *not* do:**
-
-- No new paid Shopify apps. The "verified customer reviews with star ratings" pattern that the proposal cites as a +270% to +380% purchase-likelihood lift normally needs a paid app, since Shopify's built-in reviews is retired. The plan is to build this as custom code in Phase 2 so it stays free for the client.
-- No theme replacement. The existing Craft theme stays in place.
-- No images forced. The hero and La Segreta image slots intentionally fall back to Craft's native placeholder so the owner can pick the editorial imagery later in the theme editor without blocking the rebuild.
+- **No paid Shopify apps added.** The verified-reviews-with-star-ratings pattern that lifts purchase likelihood significantly is normally a paid app subscription. We're building it as custom code in Phase 2 so the client doesn't carry a permanent monthly fee.
+- **No theme replacement.** The existing theme stays in place. Every product metafield, integration, and customer-side detail is preserved.
+- **No images forced.** The hero and La Segreta image slots fall back to the theme's native placeholder so the owner can pick the editorial imagery later, without blocking the rebuild.
 
 ### Product copy rewritten across the entire catalog
 
@@ -107,15 +83,15 @@ The work is sequenced so the highest-impact, lowest-risk changes land first:
 
 1. **Phase 1 · Home page rebuild + quick wins.** The Direction 3 homepage, the spacing/animations/asset-cleanup fixes, the footer brand fields, the utility bar. (Shipped to the development theme.)
 2. **Phase 2 · Trust and merchandising.** Visit-Us section with embedded map and events hook, gratitude-framed email capture with a first-order incentive, certification credibility, collection-page polish, product copy rewritten across the entire catalog, cleanup of redundant and half-finished templates, custom reviews and ratings built in code so the client does not take on a monthly app subscription. (Largely in progress; nav redesign and product-card hover are part of this phase.)
-3. **Phase 3 · Conversion polish.** Product-page improvements (large imagery, scannable variants, sticky add-to-cart on mobile), cross-sell, mobile pass, local SEO and Google Business Profile alignment to capture the research-online-buy-in-store behavior the Forrester/Criteo data flags as ~92% of in-store purchases.
+3. **Phase 3 · Conversion polish.** Product-page improvements (large imagery, scannable variants, sticky add-to-cart on mobile), cross-sell, a mobile pass top to bottom, and local SEO + Google Business Profile alignment — because most in-store purchases start with an online search the night before, and the storefront has to show up in that search to capture them.
 
 ## Outcome
 
-- **A research-backed proposal that landed on the first review.** No round-two design churn, no "we'll think about it for a few weeks." Direction 3 approved, rollout sequenced, build started.
-- **Homepage went from 2 sections to 6.** Live home full-page screenshot grew from 2,538 px tall (before) to 4,729 px (after), with every new section justified by a specific cited finding from the proposal.
+- **A proposal that landed on the first review.** No round-two design churn, no "we'll think about it for a few weeks." Recommendation approved, rollout sequenced, build started.
+- **Homepage went from 2 sections to 6.** From a single cover photo and a wall of text to an editorial hero, a category grid, a featured-product strip, a brand-story value strip, a dedicated band for the women's collection, and a first-class section for the Frederick storefront. Every new section earns its place.
 - **Zero added monthly cost.** Every pattern the proposal recommends, including the one normally bought as an app (verified reviews), is being built as custom code in the theme.
 - **A clear, defensible story to send to a partner.** The owner can hand the proposal HTML to anyone (a co-founder, an investor, a friend with retail experience) and they can read why each change is happening without a meeting.
-- **The brand story moved from below-the-fold paragraph to a scannable three-value strip plus a dedicated "Read Our Full Story" door,** per the Nielsen Norman Group finding that 79% of users scan rather than read.
+- **The brand story moved from a buried below-the-fold paragraph to a scannable three-value strip with a dedicated door into the full story.** Most visitors scan instead of read — the rebuild meets them where they are, while still giving the readers a clear path to the full version.
 
 ## Screenshots
 
