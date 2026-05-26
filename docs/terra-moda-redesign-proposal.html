@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Terra Moda — Storefront Redesign Proposal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quattrocento:wght@400;700&family=Quattrocento+Sans:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#efecec; --ink:#252525; --forest:#2c332f; --forest-soft:#3a4540;
+    --burgundy:#392527; --cream:#ecdaa8; --line:#d8d3ca; --muted:#6d6a63;
+    --paper:#f7f5f1;
+    --serif:'Quattrocento',Georgia,serif;
+    --sans:'Quattrocento Sans',-apple-system,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4{font-family:var(--serif);font-weight:700;line-height:1.2}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 32px}
+  section{padding:80px 0;border-bottom:1px solid var(--line)}
+  section:last-child{border-bottom:0}
+  .eyebrow{font-family:var(--sans);font-weight:700;text-transform:uppercase;letter-spacing:.22em;font-size:12px;color:var(--muted);margin-bottom:14px}
+  h2.title{font-size:38px;margin-bottom:8px;letter-spacing:-.01em}
+  .lede{font-size:20px;color:var(--forest);max-width:760px;margin:18px 0 0}
+  p{margin:16px 0;max-width:760px}
+  ul{margin:16px 0 16px 22px;max-width:760px}
+  li{margin:8px 0}
+  a{color:var(--forest);text-underline-offset:3px}
+  strong{font-weight:700}
+  .small{font-size:14px;color:var(--muted)}
+  .cite{font-size:13px;color:var(--muted);font-style:italic}
+
+  /* Cover */
+  .cover{background:var(--forest);color:var(--bg);min-height:78vh;display:flex;align-items:center;border-bottom:0}
+  .cover .wrap{width:100%}
+  .cover .eyebrow{color:#aeb6af}
+  .cover h1{font-size:64px;letter-spacing:-.02em;margin:10px 0 18px;color:#fff}
+  .cover .sub{font-size:21px;color:#cfd4cf;max-width:680px}
+  .cover .meta{margin-top:48px;font-size:14px;color:#9aa39c;letter-spacing:.04em}
+  .cover .rule{width:64px;height:3px;background:var(--cream);margin:34px 0}
+  .cover .coverhead{display:flex;align-items:center;gap:34px;flex-wrap:wrap;margin-bottom:8px}
+  .cover .logoplate{display:inline-block;background:#f7f5f1;padding:26px 34px;border-radius:8px}
+  .cover .logoplate img{display:block;height:96px;width:auto}
+  .cover .coverhead h1{margin:0}
+  @media(max-width:640px){.cover .logoplate img{height:64px}.cover .coverhead{gap:22px}}
+  .s-logo img{display:block;height:26px;width:auto}
+  .mphone .s-logo img{height:20px}
+
+  /* Callout / evidence cards */
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:36px}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:36px}
+  .card{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:26px}
+  .card h4{font-size:18px;margin-bottom:8px}
+  .stat{font-family:var(--serif);font-size:34px;color:var(--forest);font-weight:700;line-height:1}
+  .stat small{display:block;font-family:var(--sans);font-size:13px;color:var(--muted);font-weight:400;margin-top:10px;font-style:normal}
+  .src{font-size:12px;color:var(--muted);margin-top:12px;letter-spacing:.03em;text-transform:uppercase}
+  .tier{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.08em;padding:3px 8px;border-radius:99px;background:var(--forest);color:#fff;text-transform:uppercase;vertical-align:middle;margin-left:8px}
+  .tier.v{background:#9a8a5c}
+
+  .finding{display:flex;gap:18px;padding:20px 0;border-bottom:1px solid var(--line)}
+  .finding:last-child{border-bottom:0}
+  .finding .dot{flex:0 0 auto;width:10px;height:10px;border-radius:50%;background:var(--burgundy);margin-top:9px}
+  .finding .cost{color:var(--burgundy);font-weight:700;font-size:14px;display:block;margin-top:4px}
+
+  /* Mockup device frame */
+  .mock{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff;box-shadow:0 24px 60px -28px rgba(40,45,40,.4);margin:30px 0}
+  .mock .bar{background:#e7e3dc;display:flex;align-items:center;gap:7px;padding:11px 16px;border-bottom:1px solid var(--line)}
+  .mock .bar i{width:11px;height:11px;border-radius:50%;background:#c8c2b6;display:inline-block}
+  .mock .bar span{margin-left:14px;font-size:12px;color:var(--muted);font-family:var(--sans)}
+  .mock .screen{max-height:none}
+  .mphone{max-width:340px;margin:30px auto;border-radius:26px;border:9px solid #2b302c;overflow:hidden;box-shadow:0 24px 60px -28px rgba(40,45,40,.5)}
+
+  /* Mini-site building blocks (real imagery) */
+  .s-util{background:var(--forest);color:#e9ede9;font-size:12px;text-align:center;padding:9px;letter-spacing:.06em;font-family:var(--sans)}
+  .s-nav{display:flex;align-items:center;justify-content:space-between;padding:18px 26px;background:#fff;border-bottom:1px solid var(--line)}
+  .s-logo{font-family:var(--serif);font-size:22px;font-weight:700;letter-spacing:.14em}
+  .s-links{display:flex;gap:22px;font-size:13px;color:var(--ink);font-family:var(--sans)}
+  .s-hero{position:relative;height:430px;background-size:cover;background-position:center 22%}
+  .s-hero.compact{height:300px}
+  .s-hero .veil{position:absolute;inset:0;background:linear-gradient(90deg,rgba(30,34,30,.55),rgba(30,34,30,.12) 62%,rgba(30,34,30,0))}
+  .s-hero .hbox{position:absolute;left:8%;top:50%;transform:translateY(-50%);color:#fff;max-width:430px}
+  .s-hero .hbox .ey{font-family:var(--sans);text-transform:uppercase;letter-spacing:.24em;font-size:12px;color:#e9d9b3}
+  .s-hero .hbox h3{font-family:var(--serif);font-size:36px;color:#fff;margin:14px 0 12px;line-height:1.15}
+  .s-hero .hbox p{color:#e8e8e3;font-size:15px;margin:0 0 22px;font-family:var(--sans)}
+  .btn{display:inline-block;background:var(--cream);color:#2b241f;font-family:var(--sans);font-weight:700;font-size:13px;letter-spacing:.05em;padding:13px 26px;border-radius:2px;text-transform:uppercase}
+  .btn.line{background:transparent;border:1px solid #e9d9b3;color:#f3ead4;margin-left:12px}
+  .btn.dark{background:var(--forest);color:#fff}
+  .sec-h{text-align:center;padding:46px 20px 8px}
+  .sec-h .ey{font-family:var(--sans);text-transform:uppercase;letter-spacing:.2em;font-size:11px;color:var(--muted)}
+  .sec-h h4{font-family:var(--serif);font-size:27px;margin-top:8px}
+  .cats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding:24px 26px 40px}
+  .cat{position:relative;height:230px;border-radius:6px;overflow:hidden;background-size:cover;background-position:center}
+  .cat .lab{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(0deg,rgba(28,32,28,.78),transparent);color:#fff;font-family:var(--serif);font-size:17px;padding:34px 16px 16px;text-align:center}
+  .prods{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;padding:10px 26px 46px}
+  .prod .ph{height:230px;border-radius:4px;background-size:cover;background-position:center;background-color:#eee}
+  .prod .v{font-family:var(--sans);font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-top:12px}
+  .prod .t{font-family:var(--serif);font-size:15px;margin:5px 0 3px}
+  .prod .pr{font-family:var(--sans);font-size:14px;color:var(--forest)}
+  .band{display:grid;grid-template-columns:1fr 1fr;min-height:360px}
+  .band .copy{background:var(--forest);color:#eef0ed;padding:60px 56px;display:flex;flex-direction:column;justify-content:center}
+  .band .copy .ey{font-family:var(--sans);text-transform:uppercase;letter-spacing:.2em;font-size:11px;color:#aeb6af}
+  .band .copy h4{font-family:var(--serif);font-size:30px;color:#fff;margin:14px 0 16px}
+  .band .copy p{color:#cdd2cd;font-size:15px;font-family:var(--sans);margin:0 0 14px;max-width:none}
+  .band .img{background-size:cover;background-position:center}
+  .vals{display:grid;grid-template-columns:repeat(3,1fr);gap:34px;padding:54px 56px;text-align:center;background:var(--paper)}
+  .vals .vh{font-family:var(--serif);font-size:19px;margin-bottom:8px}
+  .vals p{font-family:var(--sans);font-size:14px;color:var(--muted);margin:0 auto;max-width:none}
+  .visit{display:grid;grid-template-columns:1.05fr 1fr;min-height:340px}
+  .visit .map{position:relative;background-color:#e7e3d9;background-repeat:no-repeat;background-size:cover;background-position:center;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23e7e3d9'/%3E%3Cg fill='%23dcd5c5'%3E%3Crect x='16' y='14' width='92' height='66' rx='3'/%3E%3Crect x='128' y='14' width='114' height='66' rx='3'/%3E%3Crect x='262' y='14' width='122' height='66' rx='3'/%3E%3Crect x='16' y='106' width='92' height='74' rx='3'/%3E%3Crect x='262' y='106' width='122' height='74' rx='3'/%3E%3Crect x='16' y='206' width='92' height='80' rx='3'/%3E%3Crect x='128' y='206' width='114' height='80' rx='3'/%3E%3Crect x='262' y='206' width='122' height='80' rx='3'/%3E%3C/g%3E%3Crect x='128' y='106' width='114' height='74' rx='4' fill='%23c7d3bb'/%3E%3Cpath d='M0 268 L130 300 L0 300 Z' fill='%23cdd8d4'/%3E%3Cline x1='-10' y1='34' x2='410' y2='256' stroke='%23f1ede2' stroke-width='14'/%3E%3Cg stroke='%23f6f3ec' stroke-width='10' stroke-linecap='square'%3E%3Cline x1='0' y1='93' x2='400' y2='93'/%3E%3Cline x1='0' y1='193' x2='400' y2='193'/%3E%3Cline x1='118' y1='0' x2='118' y2='300'/%3E%3Cline x1='252' y1='0' x2='252' y2='300'/%3E%3C/g%3E%3Cg stroke='%23d6cfbe' stroke-width='1.4' stroke-dasharray='5 6'%3E%3Cline x1='0' y1='93' x2='400' y2='93'/%3E%3Cline x1='0' y1='193' x2='400' y2='193'/%3E%3Cline x1='118' y1='0' x2='118' y2='300'/%3E%3Cline x1='252' y1='0' x2='252' y2='300'/%3E%3C/g%3E%3C/svg%3E")}
+  .visit .map .pin{position:absolute;left:50%;top:46%;width:22px;height:22px;background:var(--burgundy);border-radius:50% 50% 50% 0;transform:translate(-50%,-100%) rotate(-45deg);box-shadow:0 4px 10px -2px rgba(40,30,30,.45)}
+  .visit .map .pin::after{content:"";position:absolute;left:50%;top:50%;width:8px;height:8px;background:#f3e7c8;border-radius:50%;transform:translate(-50%,-50%)}
+  .visit .info{padding:54px 56px;display:flex;flex-direction:column;justify-content:center}
+  .visit .info h4{font-family:var(--serif);font-size:28px;margin-bottom:6px}
+  .visit .info .row{font-family:var(--sans);font-size:14px;color:var(--muted);margin:3px 0}
+  .nl{background:var(--burgundy);color:var(--cream);text-align:center;padding:56px 26px}
+  .nl h4{font-family:var(--serif);font-size:26px;color:#f3e7c8;margin-bottom:10px}
+  .nl p{font-family:var(--sans);font-size:14px;color:#d8c79e;max-width:none;margin:0 auto 22px}
+  .nl .field{display:inline-flex;max-width:380px;width:100%}
+  .nl .field span{flex:1;background:#fff;border-radius:2px 0 0 2px;padding:13px;text-align:left;color:#9a948a;font-size:13px;font-family:var(--sans)}
+  .nl .field b{background:var(--cream);color:#2b241f;padding:13px 20px;border-radius:0 2px 2px 0;font-family:var(--sans);font-size:13px;letter-spacing:.05em}
+  .s-foot{background:var(--forest);color:#aeb6af;padding:40px 26px;display:flex;justify-content:space-between;font-family:var(--sans);font-size:12px;flex-wrap:wrap;gap:16px}
+  .s-foot .bld{color:#e9ede9;font-family:var(--serif);font-size:16px;letter-spacing:.12em}
+  .s-foot .certs{display:flex;gap:14px;font-size:11px;letter-spacing:.06em;align-items:center}
+  .s-foot .certs i{font-style:normal;border:1px solid #5a635c;border-radius:99px;padding:5px 11px}
+
+  .anno{display:grid;grid-template-columns:34px 1fr;gap:14px;padding:16px 0;border-bottom:1px solid var(--line);font-size:15px}
+  .anno:last-child{border-bottom:0}
+  .anno .n{font-family:var(--serif);font-weight:700;color:var(--burgundy);font-size:17px}
+  .anno b{font-family:var(--sans)}
+  .anno .ev{display:block;color:var(--muted);font-size:13px;margin-top:3px}
+
+  .rec{background:var(--forest);color:#fff;border-radius:12px;padding:30px 34px;margin-top:30px}
+  .rec h4{color:#fff;font-size:21px;margin-bottom:8px}
+  .rec p{color:#cdd2cd;max-width:none;margin:8px 0 0}
+  .rec .tag{display:inline-block;background:var(--cream);color:#2b241f;font-family:var(--sans);font-weight:700;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:5px 12px;border-radius:99px;margin-bottom:14px}
+
+  .phase{display:grid;grid-template-columns:90px 1fr;gap:24px;padding:26px 0;border-bottom:1px solid var(--line)}
+  .phase:last-child{border-bottom:0}
+  .phase .pn{font-family:var(--serif);font-size:15px;font-weight:700;color:var(--forest);text-transform:uppercase;letter-spacing:.1em}
+  .phase h4{font-size:20px;margin-bottom:6px}
+
+  table{border-collapse:collapse;width:100%;margin-top:28px;font-size:14px;font-family:var(--sans)}
+  th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font-family:var(--sans);text-transform:uppercase;letter-spacing:.08em;font-size:11px;color:var(--muted)}
+  code{font-family:ui-monospace,Menlo,monospace;font-size:12px;background:#e7e3dc;padding:2px 6px;border-radius:4px;word-break:break-all}
+  .toc{columns:2;column-gap:40px;margin-top:24px;font-family:var(--sans);font-size:15px}
+  .toc a{display:block;padding:7px 0;border-bottom:1px solid var(--line);text-decoration:none}
+  .note{background:#f3ead4;border-left:3px solid #9a8a5c;padding:16px 20px;border-radius:0 8px 8px 0;font-size:14px;margin-top:24px}
+  @media(max-width:860px){
+    .grid2,.grid3,.cats,.prods,.band,.visit,.vals{grid-template-columns:1fr}
+    .cover h1{font-size:42px}.h2.title,h2.title{font-size:30px}.toc{columns:1}
+    .s-hero .hbox h3{font-size:26px}.wrap{padding:0 20px}
+  }
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <div class="wrap">
+    <div class="coverhead">
+      <div class="logoplate"><img src="https://theterramoda.com/cdn/shop/files/terra-moda-color_009be260-a1d5-4f6e-9f8d-3c8a4cd6b52d.png?v=1746150068&width=800" alt="Terra Moda"></div>
+      <h1>Storefront Redesign</h1>
+    </div>
+    <div class="rule"></div>
+    <div class="meta">theterramoda.com · Frederick, Maryland · May 2026</div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Contents</div>
+    <h2 class="title">What's inside</h2>
+    <div class="toc">
+      <a href="#today">1 · Where the site stands today</a>
+      <a href="#evidence">2 · What the evidence says</a>
+      <a href="#context">3 · How comparable boutiques do it</a>
+      <a href="#directions">4 · Three proposed directions</a>
+      <a href="#rollout">5 · The three-phase rollout</a>
+    </div>
+  </div>
+</section>
+
+<section id="today">
+  <div class="wrap">
+    <div class="eyebrow">1 · Where The Site Stands Today</div>
+    <h2 class="title">An honest audit</h2>
+    <p class="lede">I reviewed every theme file and the live site. The findings, in plain language — and what each one costs you.</p>
+    <div style="margin-top:30px">
+      <div class="finding"><div class="dot"></div><div><strong>The home page shows no products.</strong> It has exactly two sections: a cover photo and a 400-word text block. A shopper can't see a single thing for sale without clicking away.<span class="cost">Cost: every visitor who doesn't dig is a lost browse.</span></div></div>
+      <div class="finding"><div class="dot"></div><div><strong>No social proof anywhere.</strong> No reviews, ratings, or testimonials — despite real Fair Trade / B-Corp / GOTS credentials worth showcasing.<span class="cost">Cost: shoppers have no third-party reason to trust a first purchase.</span></div></div>
+      <div class="finding"><div class="dot"></div><div><strong>The brand story is buried.</strong> The "Who We Are" copy is excellent, but it's a single dense paragraph below the fold where almost no one reads it.<span class="cost">Cost: your strongest differentiator is your least-seen asset.</span></div></div>
+      <div class="finding"><div class="dot"></div><div><strong>Polish gaps.</strong> Empty footer brand fields, zero spacing between sections, animations off, and a dead 175&nbsp;KB image file loading on every page.<span class="cost">Cost: the site reads as "unfinished" even where content is fine.</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="evidence">
+  <div class="wrap">
+    <div class="eyebrow">2 · What The Evidence Says</div>
+    <h2 class="title">Every recommendation is cited.</h2>
+    <p class="lede">The strongest sources are research-grade — Nielsen Norman Group, Baymard Institute, peer-reviewed journals, the Spiegel/Medill Research Center at Northwestern. Vendor data is marked separately and treated as directional only.</p>
+    <div class="grid2">
+      <div class="card"><div class="stat">80%<small>of a visitor's attention is spent above the fold. If products and a value proposition aren't there, they're effectively invisible.</small></div><div class="src">Nielsen Norman Group <span class="tier">Research-grade</span></div></div>
+      <div class="card"><div class="stat">+270%<small>purchase likelihood for a product with even five reviews vs. none — rising to <strong>+380% for higher-priced items</strong>, exactly Terra Moda's range.</small></div><div class="src">Spiegel/Medill, Northwestern <span class="tier">Research-grade</span></div></div>
+      <div class="card"><div class="stat">85% vs 34%<small>consumer trust in <em>third-party-certified</em> ethical claims vs. self-reported ones. Vague green claims cut purchase intent 30–40%.</small></div><div class="src">Peer-reviewed (Sustainability / Nature) <span class="tier">Research-grade</span></div></div>
+      <div class="card"><div class="stat">~92%<small>of in-store purchases involve prior online research ("ROPO"). The website is the front door to the Frederick store, not separate from it.</small></div><div class="src">Forrester / Criteo <span class="tier v">Industry</span></div></div>
+      <div class="card"><div class="stat">79%<small>of users scan rather than read. A founder story only works if it's scannable — headline, short blocks, a clear "read more."</small></div><div class="src">Nielsen Norman Group <span class="tier">Research-grade</span></div></div>
+      <div class="card"><div class="stat">Misjudged<small>Baymard found a narrow home page makes shoppers <em>underestimate</em> the entire catalog. Breadth must be shown, not implied.</small></div><div class="src">Baymard Institute <span class="tier">Research-grade</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="context">
+  <div class="wrap">
+    <div class="eyebrow">3 · Competitive Context</div>
+    <h2 class="title">How the best comparable boutiques do it</h2>
+    <p class="lede">I analyzed nine independent and sustainable fashion stores — Taylor Stitch, Kotn, Buck Mason, Asket, Corridor NYC and others — that balance storytelling, conversion, and a physical store.</p>
+    <p>The pattern the strongest ones share: <strong>the brand story sits between shopping paths, never as a wall in front of them.</strong> One line on the home page, depth one click deeper. The store is a first-class section, not a footer afterthought.</p>
+  </div>
+</section>
+
+<section id="directions">
+  <div class="wrap">
+    <div class="eyebrow">4 · Three Proposed Directions</div>
+    <h2 class="title">Choose the strategy, not the paint</h2>
+    <p class="lede">These three differ by <strong>what they optimize</strong> — brand, conversion, or a balance — not by decoration. All three use only your existing vendor photography, replace the store-interior hero with editorial imagery, and add no monthly app costs.</p>
+  </div>
+
+  <!-- DIRECTION 1 -->
+  <div class="wrap" style="margin-top:54px">
+    <div class="eyebrow" style="color:var(--burgundy)">Direction 1 · Brand-led</div>
+    <h2 class="title">The Editorial Boutique</h2>
+    <p class="lede">Lead with mood and story. For when the priority is making the site <em>feel</em> as premium as the clothing.</p>
+  </div>
+  <div class="wrap"><div class="mock">
+    <div class="bar"><i></i><i></i><i></i><span>theterramoda.com — Direction 1</span></div>
+    <div class="screen">
+      <div class="s-nav"><div class="s-logo"><img src="https://theterramoda.com/cdn/shop/files/terra-moda-color_009be260-a1d5-4f6e-9f8d-3c8a4cd6b52d.png?v=1746150068&width=400" alt="Terra Moda"></div><div class="s-links"><span>Men's</span><span>La Segreta</span><span>Accessories</span><span>Our Story</span><span>Visit</span></div></div>
+      <div class="s-hero" style="height:470px;background-image:url('https://cdn.shopify.com/s/files/1/0620/6039/6604/files/79c589181d628105ef8f6086a646754ef89a19918955c77acb34cfba9da8beac.jpg?v=1769026194&width=1800')">
+        <div class="veil"></div>
+        <div class="hbox"><div class="ey">Frederick, Maryland · Since 2024</div><h3>Clothes you can feel good about, on every level.</h3><p>Sustainably sourced. Fairly made. Chosen by hand.</p><a class="btn" href="#">Explore the Collection</a></div>
+      </div>
+      <div class="vals" style="padding:34px 56px;background:#fff">
+        <div><div class="vh">Fair Labor</div><p>Family-run production shops, B-Corp &amp; Fair-Trade factories.</p></div>
+        <div><div class="vh">Sustainable</div><p>Linen, cotton, wool — natural fibers in 98% of what we carry.</p></div>
+        <div><div class="vh">Artisanal</div><p>Hand-loomed and block-printed by makers we know by name.</p></div>
+      </div>
+      <div class="sec-h"><div class="ey">Find your way in</div><h4>Shop by Category</h4></div>
+      <div class="cats" style="grid-template-columns:repeat(3,1fr)">
+        <div class="cat" style="background-image:url('https://cdn.shopify.com/s/files/1/0620/6039/6604/files/8d8635f2842514528edb0b14daa4ee9273a9ad04e4494ed509c4f8b320224c98.jpg?v=1756749915&width=700')"><div class="lab">Men's</div></div>
+        <div class="cat" style="background-image:url('https://cdn.shopify.com/s/files/1/0620/6039/6604/files/39d21b8d2b04a063beadf009ffa581c3b49cf0cc0fbc308da17a3748d0e0d7a5.jpg?v=1747032241&width=700')"><div class="lab">La Segreta</div></div>
+        <div class="cat" style="background-image:url('https://cdn.shopify.com/s/files/1/0620/6039/6604/files/144dfd774c7a6a8a1a057e5181b9257dc84d151f6a683d8446b648ea2190da61.jpg?v=1772917081&width=700')"><div class="lab">Accessories</div></div>
+      </div>
+      <div class="sec-h"><div class="ey">Just in</div><h4>New Arrivals</h4></div>
+      <div class="prods">
+        <div class="prod"><div class="ph" style="background-image:url('https://cdn.shopify.com/s/files/1/0620/6039/6604/files/877718aa6b2288762c0ab9c20b40ba6c96337fbcceaf51191873eed98b1ce9a9.jpg?v=1747032245&width=500')"></div><div class="v">LÉA &amp; LUC</div><div class="t">100% Linen Trousers</div><div class="pr">$68</div></div>
+        <div class="prod"><div class="ph" style="background-image:url('https://cdn.shopify.com/s/files/1/0620/6039/6604/files/da5e597aa4b7475e28b5664be4c0ee0d86ed2660a64fa478f551d57bfed45c40.jpg?v=1769027065&width=500')"></div><div class="v">Otherwise</div><div class="t">Jamdani Hand-Woven Shirt</div><div class="pr">$168</div></div>
+        <div class="prod"><div class="ph" style="background-image:url('https://cdn.shopify.com/s/files/1/0620/6039/6604/files/8405f8cb67ec778339525d10091507db4b6a7e7cdd56fa5969dad68c1730d715.jpg?v=1769026194&width=500')"></div><div class="v">Mollusk</div><div class="t">Lined Builder Jacket</div><div class="pr">$198</div></div>
+        <div class="prod"><div class="ph" style="background-image:url('https://cdn.shopify.com/s/files/1/0620/6039/6604/files/7d332a0953804208d0e07e85b8b3529547f057b5864dce66b9f09082bfc64d6c.jpg?v=1769027002&width=500')"></div><div class="v">JAQK</div><div class="t">Carpenter Five Striped Shirt</div><div class="pr">$120</div></div>
+      </div>
+      <div class="band">
+        <div class="copy"><div class="ey">Who We Are</div><h4>We started Terra Moda in 2024.</h4><p>We spend hours with the people who make what we carry — small, often family-owned shops that have operated for generations. A clothing store you can feel good about, in downtown Frederick.</p><a class="btn line" style="align-self:flex-start;margin:0" href="#">Read Our Story</a></div>
+        <div class="img" style="background-image:url('https://cdn.shopify.com/s/files/1/0620/6039/6604/files/192852cf56ec6a559ada0fd2313c84405863764d96f657d5f0043649fc7620a3.jpg?v=1734318283&width=1000')"></div>
+      </div>
+      <div class="band" style="grid-template-columns:1fr 1fr">
+        <div class="img" style="background-image:url('https://cdn.shopify.com/s/files/1/0620/6039/6604/files/93500610589e1cb8d8d2b47893854b9405e1dd3f03b9892af229342787ba6df9.jpg?v=1747032237&width=1000')"></div>
+        <div class="copy" style="background:var(--burgundy)"><div class="ey" style="color:#d8c79e">La Segreta</div><h4 style="color:#f3e7c8">The women's collection</h4><p style="color:#dcc99f">European linen, slow-made — a quiet, considered capsule.</p><a class="btn" style="align-self:flex-start;margin:0" href="#">Shop La Segreta</a></div>
+      </div>
+      <div class="visit"><div class="map"><div class="pin"></div></div><div class="info"><div class="ey" style="font-family:var(--sans);text-transform:uppercase;letter-spacing:.2em;font-size:11px;color:var(--muted)">Come see us</div><h4>Visit us in Frederick</h4><div class="row">Historic Downtown Frederick, MD</div><div class="row">Tue–Sat 10–6 · Sun 12–5</div><a class="btn dark" style="margin-top:16px" href="#">Get Directions</a></div></div>
+      <div class="nl"><h4>Stay in touch</h4><p>Thank-you note, first looks, and 10% off your first order.</p><div class="field"><span>your@email.com</span><b>JOIN</b></div></div>
+      <div class="s-foot"><div><div class="bld">TERRA MODA</div><div style="margin-top:8px">Family owned &amp; operated · Frederick, MD</div></div><div class="certs"><i>Fair Trade</i><i>B-Corp</i><i>GOTS</i></div></div>
+    </div>
+  </div></div>
+  <div class="wrap">
+    <div class="anno"><div class="n">A</div><div><b>Editorial hero, single CTA.</b><span class="ev">NN/g: 80% of attention is above the fold — a strong mood image earns the scroll. Replaces the unusable store photo.</span></div></div>
+    <div class="anno"><div class="n">B</div><div><b>Story given a full two-panel band, high on the page.</b><span class="ev">Peer-reviewed: founder/values stories raise authenticity → trust → small-business growth. Competitive gap — most peers bury this.</span></div></div>
+    <div class="anno"><div class="n">C</div><div><b>Products appear, but lower.</b><span class="ev">Trade-off: leans hardest on hero-image strength; conversion-focused shoppers wait longer to see goods.</span></div></div>
+  </div>
+
+  <!-- DIRECTION 2 -->
+  <div class="wrap" style="margin-top:60px;border-top:1px solid var(--line);padding-top:54px">
+    <div class="eyebrow" style="color:var(--burgundy)">Direction 2 · Conversion-led</div>
+    <h2 class="title">The Curated Shop</h2>
+    <p class="lede">Catalog-forward. For when the priority is turning visits into online orders.</p>
+  </div>
+  <div class="wrap"><div class="mock">
+    <div class="bar"><i></i><i></i><i></i><span>theterramoda.com — Direction 2</span></div>
+    <div class="screen">
+      <div class="s-util">Free shipping &amp; easy returns · Visit us in Historic Downtown Frederick</div>
+      <div class="s-nav"><div class="s-logo"><img src="https://theterramoda.com/cdn/shop/files/terra-moda-color_009be260-a1d5-4f6e-9f8d-3c8a4cd6b52d.png?v=1746150068&width=400" alt="Terra Moda"></div><div class="s-links"><span>Men's</span><span>La Segreta</span><span>Outerwear</span><span>Accessories</span><span>Our Story</span></div></div>
+      <div class="s-hero compact" style="background-image:url('https://cdn.shopify.com/s/files/1/0620/6039/6604/files/0b7090a33a592345799b3b13cf3b2a96d38e25b2039d25b6ad566a84ca97ea6e.jpg?v=1769026194&width=1800')">
+        <div class="veil"></div>
+        <div class="hbox"><h3>Premium, fairly made.</h3><p>Men's &amp; women's clothing from small artisan vendors.</p><a class="btn" href="#">Shop Men's</a><a class="btn line" href="#">Shop La Segreta</a></div>
+      </div>
+      <div class="sec-h"><h4>Shop by Category</h4></div>
+      <div class="cats">
+        <div class="cat" style="background-image:url('https://cdn.shopify.com/s/files/1/0620/6039/6604/files/8d8635f2842514528edb0b14daa4ee9273a9ad04e4494ed509c4f8b320224c98.jpg?v=1756749915&width=700')"><div class="lab">Men's</div></div>
+        <div class="cat" style="background-image:url('https://cdn.shopify.com/s/files/1/0620/6039/6604/files/39d21b8d2b04a063beadf009ffa581c3b49cf0cc0fbc308da17a3748d0e0d7a5.jpg?v=1747032241&width=700')"><div class="lab">La Segreta</div></div>
+        <div class="cat" style="background-image:url('https://cdn.shopify.com/s/files/1/0620/6039/6604/files/da5e597aa4b7475e28b5664be4c0ee0d86ed2660a64fa478f551d57bfed45c40.jpg?v=1769027065&width=700')"><div class="lab">Outerwear</div></div>
+        <div class="cat" style="background-image:url('https://cdn.shopify.com/s/files/1/0620/6039/6604/files/144dfd774c7a6a8a1a057e5181b9257dc84d151f6a683d8446b648ea2190da61.jpg?v=1772917081&width=700')"><div class="lab">Accessories</div></div>
+      </div>
+      <div class="sec-h"><h4>New Arrivals</h4></div>
+      <div class="prods">
+        <div class="prod"><div class="ph" style="background-image:url('https://cdn.shopify.com/s/files/1/0620/6039/6604/files/144dfd774c7a6a8a1a057e5181b9257dc84d151f6a683d8446b648ea2190da61.jpg?v=1772917081&width=500')"></div><div class="v">Bird Collective</div><div class="t">Sandhill Crane Hat</div><div class="pr">$44</div></div>
+        <div class="prod"><div class="ph" style="background-image:url('https://cdn.shopify.com/s/files/1/0620/6039/6604/files/877718aa6b2288762c0ab9c20b40ba6c96337fbcceaf51191873eed98b1ce9a9.jpg?v=1747032245&width=500')"></div><div class="v">LÉA &amp; LUC</div><div class="t">100% Linen Trousers</div><div class="pr">$68</div></div>
+        <div class="prod"><div class="ph" style="background-image:url('https://cdn.shopify.com/s/files/1/0620/6039/6604/files/da5e597aa4b7475e28b5664be4c0ee0d86ed2660a64fa478f551d57bfed45c40.jpg?v=1769027065&width=500')"></div><div class="v">Otherwise</div><div class="t">Jamdani Hand-Woven Shirt</div><div class="pr">$168</div></div>
+        <div class="prod"><div class="ph" style="background-image:url('https://cdn.shopify.com/s/files/1/0620/6039/6604/files/8d8635f2842514528edb0b14daa4ee9273a9ad04e4494ed509c4f8b320224c98.jpg?v=1756749915&width=500')"></div><div class="v">Iron &amp; Resin</div><div class="t">Bronson Jacket</div><div class="pr">$198</div></div>
+      </div>
+      <div class="prods" style="padding-top:0">
+        <div class="prod"><div class="ph" style="background-image:url('https://cdn.shopify.com/s/files/1/0620/6039/6604/files/7d332a0953804208d0e07e85b8b3529547f057b5864dce66b9f09082bfc64d6c.jpg?v=1769027002&width=500')"></div><div class="v">JAQK</div><div class="t">Carpenter Five Striped</div><div class="pr">$120</div></div>
+        <div class="prod"><div class="ph" style="background-image:url('https://cdn.shopify.com/s/files/1/0620/6039/6604/files/39d21b8d2b04a063beadf009ffa581c3b49cf0cc0fbc308da17a3748d0e0d7a5.jpg?v=1747032241&width=500')"></div><div class="v">LÉA &amp; LUC</div><div class="t">100% Linen Blouse</div><div class="pr">$88</div></div>
+        <div class="prod"><div class="ph" style="background-image:url('https://cdn.shopify.com/s/files/1/0620/6039/6604/files/8405f8cb67ec778339525d10091507db4b6a7e7cdd56fa5969dad68c1730d715.jpg?v=1769026194&width=500')"></div><div class="v">Mollusk</div><div class="t">Lined Builder Jacket</div><div class="pr">$198</div></div>
+        <div class="prod"><div class="ph" style="background-image:url('https://cdn.shopify.com/s/files/1/0620/6039/6604/files/93500610589e1cb8d8d2b47893854b9405e1dd3f03b9892af229342787ba6df9.jpg?v=1747032237&width=500')"></div><div class="v">LÉA &amp; LUC</div><div class="t">Long Linen Dress</div><div class="pr">$98</div></div>
+      </div>
+      <div class="vals"><div><div class="vh">Fair Labor</div><p>Makers we know by name.</p></div><div><div class="vh">Sustainable</div><p>Natural fibers, 98% of the catalog.</p></div><div><div class="vh">Artisanal</div><p>Hand-loomed &amp; block-printed.</p></div></div>
+      <div class="sec-h"><div class="ey">What customers say</div><h4>Loved in Frederick &amp; beyond</h4></div>
+      <div class="prods" style="grid-template-columns:repeat(3,1fr)">
+        <div class="card" style="text-align:center"><div style="color:#9a8a5c">★★★★★</div><p style="font-size:14px;font-style:italic">"The quality is unreal for the price. My new favorite shop."</p><div class="v">— Sarah K.</div></div>
+        <div class="card" style="text-align:center"><div style="color:#9a8a5c">★★★★★</div><p style="font-size:14px;font-style:italic">"Finally, ethical menswear that actually looks good."</p><div class="v">— Daniel R.</div></div>
+        <div class="card" style="text-align:center"><div style="color:#9a8a5c">★★★★★</div><p style="font-size:14px;font-style:italic">"You can feel the craftsmanship. Worth every dollar."</p><div class="v">— Mei L.</div></div>
+      </div>
+      <div class="visit"><div class="map"><div class="pin"></div></div><div class="info"><h4>Visit us in Frederick</h4><div class="row">Historic Downtown Frederick, MD</div><div class="row">Tue–Sat 10–6 · Sun 12–5</div><a class="btn dark" style="margin-top:16px" href="#">Get Directions</a></div></div>
+      <div class="nl"><h4>10% off your first order</h4><p>Join for first looks and a thank-you discount.</p><div class="field"><span>your@email.com</span><b>JOIN</b></div></div>
+      <div class="s-foot"><div><div class="bld">TERRA MODA</div><div style="margin-top:8px">Family owned &amp; operated · Frederick, MD</div></div><div class="certs"><i>Fair Trade</i><i>B-Corp</i><i>GOTS</i></div></div>
+    </div>
+  </div></div>
+  <div class="wrap">
+    <div class="anno"><div class="n">A</div><div><b>Compact hero, dual shop CTAs, products within one scroll.</b><span class="ev">Baymard: a narrow home page makes shoppers underestimate the catalog — show breadth fast.</span></div></div>
+    <div class="anno"><div class="n">B</div><div><b>Two product rows + curated testimonials before the fold-line of trust.</b><span class="ev">Spiegel/Medill: reviews lift purchase likelihood +380% on higher-priced goods.</span></div></div>
+    <div class="anno"><div class="n">C</div><div><b>Story compressed to a three-word value strip.</b><span class="ev">Trade-off: efficient, but light on the narrative that is Terra Moda's strongest differentiator.</span></div></div>
+  </div>
+
+  <!-- DIRECTION 3 -->
+  <div class="wrap" style="margin-top:60px;border-top:1px solid var(--line);padding-top:54px">
+    <div class="eyebrow" style="color:var(--burgundy)">Direction 3 · Balanced — Recommended</div>
+    <h2 class="title">The Local Atelier</h2>
+    <p class="lede">Story sandwiched between shopping paths; the Frederick store elevated to a first-class section. Tuned to your stated goal: brand, conversion, <em>and</em> local — together.</p>
+  </div>
+  <div class="wrap"><div class="mock">
+    <div class="bar"><i></i><i></i><i></i><span>theterramoda.com — Direction 3 · The Local Atelier (recommended)</span></div>
+    <div class="screen">
+      <div class="s-util">Free shipping &amp; easy returns · Visit us in Historic Downtown Frederick</div>
+      <div class="s-nav"><div class="s-logo"><img src="https://theterramoda.com/cdn/shop/files/terra-moda-color_009be260-a1d5-4f6e-9f8d-3c8a4cd6b52d.png?v=1746150068&width=400" alt="Terra Moda"></div><div class="s-links"><span>Men's</span><span>La Segreta</span><span>Outerwear</span><span>Accessories</span><span>Our Story</span><span>Visit</span></div></div>
+      <div class="s-hero" style="height:460px;background-image:url('https://cdn.shopify.com/s/files/1/0620/6039/6604/files/79c589181d628105ef8f6086a646754ef89a19918955c77acb34cfba9da8beac.jpg?v=1769026194&width=1800')">
+        <div class="veil"></div>
+        <div class="hbox"><div class="ey">Frederick, Maryland · Since 2024</div><h3>Premium clothing you can feel good about.</h3><p>Sustainably sourced, fairly made, chosen by hand from small artisan vendors.</p><a class="btn" href="#">Shop the Collection</a><a class="btn line" href="#">Our Story</a></div>
+      </div>
+      <div class="sec-h"><div class="ey">Find your way in</div><h4>Shop by Category</h4></div>
+      <div class="cats">
+        <div class="cat" style="background-image:url('https://cdn.shopify.com/s/files/1/0620/6039/6604/files/8d8635f2842514528edb0b14daa4ee9273a9ad04e4494ed509c4f8b320224c98.jpg?v=1756749915&width=700')"><div class="lab">Men's</div></div>
+        <div class="cat" style="background-image:url('https://cdn.shopify.com/s/files/1/0620/6039/6604/files/39d21b8d2b04a063beadf009ffa581c3b49cf0cc0fbc308da17a3748d0e0d7a5.jpg?v=1747032241&width=700')"><div class="lab">La Segreta</div></div>
+        <div class="cat" style="background-image:url('https://cdn.shopify.com/s/files/1/0620/6039/6604/files/da5e597aa4b7475e28b5664be4c0ee0d86ed2660a64fa478f551d57bfed45c40.jpg?v=1769027065&width=700')"><div class="lab">Outerwear</div></div>
+        <div class="cat" style="background-image:url('https://cdn.shopify.com/s/files/1/0620/6039/6604/files/144dfd774c7a6a8a1a057e5181b9257dc84d151f6a683d8446b648ea2190da61.jpg?v=1772917081&width=700')"><div class="lab">Accessories</div></div>
+      </div>
+      <div class="sec-h"><div class="ey">Fresh picks across the range</div><h4>New Arrivals</h4></div>
+      <div class="prods">
+        <div class="prod"><div class="ph" style="background-image:url('https://cdn.shopify.com/s/files/1/0620/6039/6604/files/144dfd774c7a6a8a1a057e5181b9257dc84d151f6a683d8446b648ea2190da61.jpg?v=1772917081&width=500')"></div><div class="v">Bird Collective</div><div class="t">Sandhill Crane Hat</div><div class="pr">$44</div></div>
+        <div class="prod"><div class="ph" style="background-image:url('https://cdn.shopify.com/s/files/1/0620/6039/6604/files/877718aa6b2288762c0ab9c20b40ba6c96337fbcceaf51191873eed98b1ce9a9.jpg?v=1747032245&width=500')"></div><div class="v">LÉA &amp; LUC</div><div class="t">100% Linen Trousers</div><div class="pr">$68</div></div>
+        <div class="prod"><div class="ph" style="background-image:url('https://cdn.shopify.com/s/files/1/0620/6039/6604/files/da5e597aa4b7475e28b5664be4c0ee0d86ed2660a64fa478f551d57bfed45c40.jpg?v=1769027065&width=500')"></div><div class="v">Otherwise</div><div class="t">Jamdani Hand-Woven Shirt</div><div class="pr">$168</div></div>
+        <div class="prod"><div class="ph" style="background-image:url('https://cdn.shopify.com/s/files/1/0620/6039/6604/files/8405f8cb67ec778339525d10091507db4b6a7e7cdd56fa5969dad68c1730d715.jpg?v=1769026194&width=500')"></div><div class="v">Mollusk</div><div class="t">Lined Builder Jacket</div><div class="pr">$198</div></div>
+      </div>
+      <div class="vals">
+        <div><div class="vh">Fair Labor</div><p>We know the people who make what we carry — small family shops, B-Corp &amp; Fair-Trade factories.</p></div>
+        <div><div class="vh">Sustainable</div><p>Linen, cotton, wool. Natural fibers in 98% of the catalog; organic where it matters.</p></div>
+        <div><div class="vh">Artisanal</div><p>Hand-loom weaving, block printing, hand embroidery — craft that lasts.</p></div>
+      </div>
+      <div style="text-align:center;padding:0 0 46px;background:var(--paper)"><a class="btn dark" href="#">Read Our Full Story</a></div>
+      <div class="band">
+        <div class="copy"><div class="ey">La Segreta</div><h4>The women's collection</h4><p>European linen and slow-made pieces — a quiet, considered capsule, photographed as one consistent story.</p><a class="btn" style="align-self:flex-start;margin:0" href="#">Shop La Segreta</a></div>
+        <div class="img" style="background-image:url('https://cdn.shopify.com/s/files/1/0620/6039/6604/files/93500610589e1cb8d8d2b47893854b9405e1dd3f03b9892af229342787ba6df9.jpg?v=1747032237&width=1000')"></div>
+      </div>
+      <div class="visit">
+        <div class="map"><div class="pin"></div></div>
+        <div class="info"><div class="ey" style="font-family:var(--sans);text-transform:uppercase;letter-spacing:.2em;font-size:11px;color:var(--muted)">Come see us</div><h4>Visit us in Frederick</h4><div class="row">Historic Downtown Frederick, Maryland</div><div class="row">Tue–Sat 10am–6pm · Sun 12–5pm</div><div class="row" style="margin-top:10px;color:var(--burgundy);font-weight:700">Ask about our trunk shows &amp; La Segreta launch nights</div><a class="btn dark" style="margin-top:18px" href="#">Get Directions</a></div>
+      </div>
+      <div class="nl"><h4>Stay in touch — 10% off your first order</h4><p>A thank-you note, first looks at new arrivals, and the occasional story from the makers we work with.</p><div class="field"><span>your@email.com</span><b>JOIN</b></div></div>
+      <div class="s-foot"><div><div class="bld">TERRA MODA</div><div style="margin-top:8px">Family owned &amp; operated in Frederick, MD · Thank you for shopping small.</div></div><div class="certs"><i>Fair Trade</i><i>B-Corp</i><i>GOTS</i></div></div>
+    </div>
+  </div></div>
+  <div class="wrap">
+    <div class="anno"><div class="n">A</div><div><b>Utility bar pairs a trust signal with the local hook.</b><span class="ev">~92% of in-store purchases involve prior online research — the bar serves both online and Frederick foot traffic from pixel one.</span></div></div>
+    <div class="anno"><div class="n">B</div><div><b>Mood hero → category grid → products, then the story.</b><span class="ev">The Taylor Stitch / Kotn pattern: values sit <em>between</em> shopping paths, present but never blocking.</span></div></div>
+    <div class="anno"><div class="n">C</div><div><b>Scannable three-value band with one "Read Our Story" door.</b><span class="ev">NN/g: 79% scan, not read. The full narrative lives one click deeper, not in a home-page wall.</span></div></div>
+    <div class="anno"><div class="n">D</div><div><b>La Segreta gets its own consistent band.</b><span class="ev">Its LÉA &amp; LUC photography is the catalog's most uniform — the one place a single, consistent look is feasible.</span></div></div>
+    <div class="anno"><div class="n">E</div><div><b>"Visit Us" is a full section with an events hook, not a footer line.</b><span class="ev">Buck Mason / Corridor pattern; turns the physical store into a community draw rather than an afterthought.</span></div></div>
+  </div>
+
+  <!-- D3 mobile + zoom -->
+  <div class="wrap" style="margin-top:54px">
+    <div class="eyebrow">Direction 3 — in more depth</div>
+    <h2 class="title">On mobile, where most shopping happens</h2>
+    <p class="lede">63% of mobile shoppers abandon at least once due to preventable mobile UX issues (Baymard). Direction 3 stacks cleanly, keeps tap targets generous, and front-loads the value proposition.</p>
+  </div>
+  <div class="wrap"><div class="mphone"><div class="screen">
+    <div class="s-util" style="font-size:10px;padding:7px">Free shipping · Visit us in Frederick</div>
+    <div class="s-nav" style="padding:14px 16px"><div class="s-logo"><img src="https://theterramoda.com/cdn/shop/files/terra-moda-color_009be260-a1d5-4f6e-9f8d-3c8a4cd6b52d.png?v=1746150068&width=300" alt="Terra Moda"></div><div style="font-size:18px">☰</div></div>
+    <div class="s-hero" style="height:300px;background-image:url('https://cdn.shopify.com/s/files/1/0620/6039/6604/files/79c589181d628105ef8f6086a646754ef89a19918955c77acb34cfba9da8beac.jpg?v=1769026194&width=900')">
+      <div class="veil" style="background:linear-gradient(0deg,rgba(30,34,30,.7),rgba(30,34,30,.15))"></div>
+      <div class="hbox" style="left:7%;right:7%;max-width:none"><h3 style="font-size:22px">Premium clothing you can feel good about.</h3><a class="btn" style="margin-top:8px" href="#">Shop the Collection</a></div>
+    </div>
+    <div class="cats" style="grid-template-columns:1fr 1fr;padding:18px 16px 26px;gap:10px">
+      <div class="cat" style="height:140px;background-image:url('https://cdn.shopify.com/s/files/1/0620/6039/6604/files/8d8635f2842514528edb0b14daa4ee9273a9ad04e4494ed509c4f8b320224c98.jpg?v=1756749915&width=500')"><div class="lab" style="font-size:14px">Men's</div></div>
+      <div class="cat" style="height:140px;background-image:url('https://cdn.shopify.com/s/files/1/0620/6039/6604/files/39d21b8d2b04a063beadf009ffa581c3b49cf0cc0fbc308da17a3748d0e0d7a5.jpg?v=1747032241&width=500')"><div class="lab" style="font-size:14px">La Segreta</div></div>
+    </div>
+    <div class="prods" style="grid-template-columns:1fr 1fr;padding:0 16px 26px;gap:12px">
+      <div class="prod"><div class="ph" style="height:160px;background-image:url('https://cdn.shopify.com/s/files/1/0620/6039/6604/files/877718aa6b2288762c0ab9c20b40ba6c96337fbcceaf51191873eed98b1ce9a9.jpg?v=1747032245&width=400')"></div><div class="t" style="font-size:13px">100% Linen Trousers</div><div class="pr" style="font-size:13px">$68</div></div>
+      <div class="prod"><div class="ph" style="height:160px;background-image:url('https://cdn.shopify.com/s/files/1/0620/6039/6604/files/da5e597aa4b7475e28b5664be4c0ee0d86ed2660a64fa478f551d57bfed45c40.jpg?v=1769027065&width=400')"></div><div class="t" style="font-size:13px">Jamdani Shirt</div><div class="pr" style="font-size:13px">$168</div></div>
+    </div>
+    <div class="nl" style="padding:34px 18px"><h4 style="font-size:19px">10% off your first order</h4><div class="field" style="margin-top:8px"><span style="font-size:12px">your@email.com</span><b style="font-size:12px">JOIN</b></div></div>
+  </div></div></div>
+
+  <div class="wrap">
+    <div class="rec">
+      <span class="tag">My recommendation</span>
+      <h4>Lead with Direction 3 — The Local Atelier</h4>
+      <p>It is the only direction that serves all three of your goals at once: it elevates the brand (editorial hero, a real story moment), drives conversion (category and product paths within one scroll), and treats the Frederick store as the trust asset the research shows it to be. Directions 1 and 2 are strong if you decide to prioritize brand or online sales specifically — they stay on the table, and the rollout below works for whichever you choose.</p>
+    </div>
+  </div>
+</section>
+
+<section id="rollout">
+  <div class="wrap">
+    <div class="eyebrow">5 · The Three-Phase Rollout</div>
+    <h2 class="title">How I get there</h2>
+    <p class="lede">Sequenced so the highest-impact, lowest-risk work lands first. Every item is achievable with custom theme code — no added monthly app subscriptions — with one exception, flagged in Phase 2.</p>
+    <div style="margin-top:30px">
+      <div class="phase"><div class="pn">Phase 1</div><div><h4>Home page rebuild + quick wins</h4><p>Build the chosen direction's home page. Replace the store-photo hero with editorial imagery, add category &amp; product paths, surface the story scannably, fill the empty brand fields, turn on section spacing and reveal animations, delete the dead 175&nbsp;KB asset.</p></div></div>
+      <div class="phase"><div class="pn">Phase 2</div><div><h4>Trust &amp; merchandising</h4><p>Visit-Us section with embedded map &amp; events, gratitude-framed email capture with a first-order incentive, certification credibility, collection-page polish, cleanup of redundant/half-finished templates. <span class="cite">Note: verified customer reviews with star ratings is the one pattern that normally needs a paid app (Shopify's built-in reviews is retired). I will build this as custom code so it stays free for you.</span></p></div></div>
+      <div class="phase"><div class="pn">Phase 3</div><div><h4>Conversion polish</h4><p>Product-page improvements (large imagery, scannable variants, sticky add-to-cart on mobile), cross-sell, mobile pass, local SEO / Google Business Profile alignment to capture the research-online-buy-in-store behavior.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<footer style="background:var(--forest);color:#9aa39c;text-align:center;padding:44px 24px;font-size:13px">
+  <div style="max-width:760px;margin:0 auto">
+    <div style="color:#cfd4cf">Terra Moda Storefront Redesign · May 2026</div>
+  </div>
+</footer>
+
+</body>
+</html>
