@@ -1,8 +1,8 @@
 <!--
 ad-rem-case-study:
   client: Terra Moda
-  project: Storefront audit, evidence-backed redesign proposal, and Shopify rebuild for a sustainable fashion boutique
-  outcome: A research-grade proposal that earned owner sign-off in a single review, then a custom Direction-3 ("Local Atelier") build on the live Craft theme, with the homepage rebuilt from 2 sections to 6 and every change tied to a published source.
+  project: Custom Shopify rebuild for a sustainable Frederick boutique
+  outcome: Homepage rebuilt from 2 sections to 6, proposal approved on the first read, zero added monthly Shopify-app cost.
   stack: [Shopify, Liquid, Vanilla JS, Custom CSS, Craft theme base]
   liveUrl: https://theterramoda.com
   year: 2026
