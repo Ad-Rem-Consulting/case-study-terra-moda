@@ -2,7 +2,7 @@
 ad-rem-case-study:
   client: Terra Moda
   project: Custom Shopify rebuild for a sustainable Frederick boutique
-  outcome: Homepage rebuilt from 2 sections to 6, proposal approved on the first read, zero added monthly Shopify-app cost.
+  outcome: Homepage rebuilt from 2 sections to 7, customer testimonials and a "How we vet" transparency page added, proposal approved on the first read, zero added monthly Shopify-app cost.
   stack: [Shopify, Liquid, Vanilla JS, Custom CSS, Craft theme base]
   liveUrl: https://theterramoda.com
   year: 2026
@@ -62,35 +62,39 @@ The new homepage tells the whole brand in one scroll:
 - **A first impression that shows the brand.** An editorial hero with two clear paths — shop the collection or read the story — instead of a wall of text.
 - **Products visible above the fold.** A four-tile category grid, then a featured-product strip, so a first-time visitor can see what's for sale without clicking the nav.
 - **The story told the way people read it.** A scannable three-value strip — Fair Labor, Sustainable, Artisanal — with a single door into the full "Our Story" page, instead of a 400-word paragraph nobody finishes.
+- **Real social proof, for the first time.** A testimonials block with three named, location-tagged customer quotes — the storefront had carried zero social proof before, despite the brand earning plenty of it.
 - **The women's collection treated as a brand within the brand.** La Segreta gets its own editorial band with a dedicated shop CTA — the way the collection actually sits in the physical store.
 - **The Frederick store as a first-class destination.** A Visit-Us section with an embedded map, hours, and a "Get Directions" CTA. The retail location used to be a footer line. Now it's a section.
 
-Alongside the homepage, we filled the gaps that made the old site read as unfinished: spacing between sections, reveal-on-scroll animations, the dead 175 KB asset deleted from every page load, brand fields filled in, a utility bar with the trust signals and the local hook ("Free shipping & easy returns · Visit us in Historic Downtown Frederick"). Plus a self-sufficient mega-menu the owner can edit without needing a developer, a redesigned product detail page that puts the product first instead of upsell widgets, and a branded contact page that replaced an off-the-shelf form block.
+That took the home page from two sections to seven, each one earning its place.
 
-**What we deliberately did not do:**
+Alongside the homepage, we filled the gaps that made the old site read as unfinished: spacing between sections, reveal-on-scroll animations, a dead 175 KB asset deleted from every page load, brand fields filled in, a utility bar with trust signals and the local hook. Plus a self-sufficient mega-menu the owner can edit without needing a developer, a redesigned product detail page that puts the product first instead of upsell widgets, a branded contact page that replaced an off-the-shelf form block, and a small touch that mattered for an artisan catalog: a localized "One Size" badge on product cards that recognizes single-size pieces automatically (and keeps working if the store ever runs in Italian or Spanish).
 
-- **No paid Shopify apps added.** The verified-reviews-with-star-ratings pattern that lifts purchase likelihood significantly is normally a paid app subscription. We're building it as custom code in Phase 2 so the client doesn't carry a permanent monthly fee.
-- **No theme replacement.** The existing theme stays in place. Every product metafield, integration, and customer-side detail is preserved.
-- **No images forced.** The hero and La Segreta image slots fall back to the theme's native placeholder so the owner can pick the editorial imagery later, without blocking the rebuild.
+### A "How we vet" page that makes the certifications legible
+
+The brand's strongest differentiator — every vendor vetted against real third-party standards — was completely invisible on the old site. We built a dedicated "How we vet" page that frames Terra Moda as *a curator, not a certifier*: a reference grid explaining what Fair Trade, B-Corp, and GOTS each actually verify, a stat band quantifying the catalog (100% of the baby line organic, 98% natural fibers, nine credentialed vendors), and a vendor spotlight showing radical supply-chain transparency as a concrete example. It's linked from the footer, and it replaced a thin, easy-to-miss "Trust" line that was doing the message no justice.
+
+What we deliberately did not do: no paid Shopify apps added (the homepage testimonials are curated social proof shipped now in stock Craft; the verified per-product review system is being built as custom code in Phase 2 so the client doesn't carry a permanent monthly fee), no theme replacement, no images forced (the hero and La Segreta image slots fall back to the theme's native placeholder so the owner can pick the editorial imagery later without blocking the rebuild).
 
 ### Product copy rewritten across the entire catalog
 
-Every product page is getting a full rewrite, not just the names. Every paragraph. The previous copy read like default Shopify variant fields — color, size, material, repeat — for products whose *whole point* is the maker behind them. The new copy talks like the brand actually talks. Each piece is tied to its vendor and the materials' provenance, references the certifications behind it (Fair Trade, B-Corp, GOTS where applicable), and matches the editorial voice of the Direction 3 rebuild. Product pages stopped feeling like a catalog of items the store happens to carry and started feeling like the brand's argument for *why* this specific piece, from this specific maker, sits on the rack at 218 N Market St. That's the difference between a visitor landing on a PDP and bouncing vs. landing on a PDP and adding to cart — and on a brand whose entire pitch is the story behind the product, leaving the default Shopify copy in place was leaving the strongest asset on the table.
+Every product page is getting a full rewrite, not just the names. Every paragraph. The previous copy read like default Shopify variant fields — color, size, material, repeat — for products whose *whole point* is the maker behind them. The new copy talks like the brand actually talks. Each piece is tied to its vendor and the materials' provenance, references the certifications behind it (Fair Trade, B-Corp, GOTS where applicable), and matches the editorial voice of the Direction 3 rebuild. Product pages stopped feeling like a catalog of items the store happens to carry and started feeling like the brand's argument for *why* this specific piece, from this specific maker, sits on the rack at 218 N Market St. On a brand whose entire pitch is the story behind the product, leaving the default Shopify copy in place was leaving the strongest asset on the table.
 
 ## The three-phase rollout
 
 The work is sequenced so the highest-impact, lowest-risk changes land first:
 
-1. **Phase 1 · Home page rebuild + quick wins.** The Direction 3 homepage, the spacing/animations/asset-cleanup fixes, the footer brand fields, the utility bar. (Shipped to the development theme.)
-2. **Phase 2 · Trust and merchandising.** Visit-Us section with embedded map and events hook, gratitude-framed email capture with a first-order incentive, certification credibility, collection-page polish, product copy rewritten across the entire catalog, cleanup of redundant and half-finished templates, custom reviews and ratings built in code so the client does not take on a monthly app subscription. (Largely in progress; nav redesign and product-card hover are part of this phase.)
+1. **Phase 1 · Home page rebuild + quick wins.** The Direction 3 homepage, spacing/animations/asset-cleanup fixes, footer brand fields, the utility bar. (Shipped to the development theme.)
+2. **Phase 2 · Trust and merchandising.** Visit-Us section with map and events hook, customer testimonials, the "How we vet" transparency page, the localized "One Size" badge, gratitude-framed email capture, certification credibility, collection-page polish, product copy rewritten across the entire catalog, template cleanup, and verified reviews and ratings built in code. (Largely in progress.)
 3. **Phase 3 · Conversion polish.** Product-page improvements (large imagery, scannable variants, sticky add-to-cart on mobile), cross-sell, a mobile pass top to bottom, and local SEO + Google Business Profile alignment — because most in-store purchases start with an online search the night before, and the storefront has to show up in that search to capture them.
 
 ## Outcome
 
 - **A proposal that landed on the first review.** No round-two design churn, no "we'll think about it for a few weeks." Recommendation approved, rollout sequenced, build started.
-- **Homepage went from 2 sections to 6.** From a single cover photo and a wall of text to an editorial hero, a category grid, a featured-product strip, a brand-story value strip, a dedicated band for the women's collection, and a first-class section for the Frederick storefront. Every new section earns its place.
+- **Homepage went from 2 sections to 7.** From a single cover photo and a wall of text to an editorial hero, a category grid, a featured-product strip, a brand-story value strip, customer testimonials, a dedicated band for the women's collection, and a first-class section for the Frederick storefront. Every new section earns its place.
+- **The certifications became a destination.** The vetting story moved from an invisible brand claim to a standalone "How we vet" page, linked from the footer, with each standard explained and quantified.
 - **Zero added monthly cost.** Every pattern the proposal recommends, including the one normally bought as an app (verified reviews), is being built as custom code in the theme.
-- **A clear, defensible story to send to a partner.** The owner can hand the proposal HTML to anyone (a co-founder, an investor, a friend with retail experience) and they can read why each change is happening without a meeting.
+- **A clear, defensible story to send to a partner.** The owner can hand the proposal HTML to anyone — a co-founder, an investor, a friend with retail experience — and they can read why each change is happening without a meeting.
 - **The brand story moved from a buried below-the-fold paragraph to a scannable three-value strip with a dedicated door into the full story.** Most visitors scan instead of read — the rebuild meets them where they are, while still giving the readers a clear path to the full version.
 
 ## Screenshots
@@ -102,8 +106,8 @@ The home page tells the whole story. Full-page captures, original on the left, D
 ![Terra Moda home page before the redesign: a single cover photo of the store interior and a thank-you headline, with no products visible](./screenshots/before/home.png)
 *Before. The live home page. A single cover photo and a thank-you line. No products. No story preview. No path into the catalog without using the nav.*
 
-![Terra Moda home page after the Direction 3 rebuild: editorial hero with two CTAs, category grid, products, value strip, La Segreta band, visit info](./screenshots/after/home.png)
-*After. Direction 3, "The Local Atelier." Editorial hero with the brand promise and dual CTAs. The full sequence is hero → categories → products → value strip → La Segreta band → visit, scannable end to end.*
+![Terra Moda home page after the Direction 3 rebuild: editorial hero with two CTAs, category grid, products, value strip, testimonials, La Segreta band, visit info](./screenshots/after/home.png)
+*After. Direction 3, "The Local Atelier." Editorial hero with the brand promise and dual CTAs. The full sequence is hero → categories → products → value strip → testimonials → La Segreta band → visit, scannable end to end.*
 
 ### Men's collection
 
@@ -149,7 +153,7 @@ The home page tells the whole story. Full-page captures, original on the left, D
 - **Audit + proposal:** 5 days, single approval round.
 - **Rebuild:** rolling, phased.
 - **Phase 1 (homepage + quick wins):** shipped to development theme.
-- **Phase 2 (trust + merchandising + nav + custom reviews + product copy rewrite):** in progress.
+- **Phase 2 (trust + merchandising + testimonials + How-we-vet page + nav + custom reviews):** in progress.
 - **Phase 3 (PDP polish + mobile + local SEO):** scheduled.
 - **Engagement type:** fixed-price.
 - **Status:** in progress against the live Craft theme, gated by owner approval at each phase. Push to draft/published only on the owner's go-ahead.
